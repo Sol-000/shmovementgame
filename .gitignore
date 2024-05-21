@@ -1,2 +1,48 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Godot-specific files
+export.cfg
+export_presets.cfg
+
+# Import files
+.import/
+
+# Godot's temporary files
+*.godot.tmp
+*godot.flags
+
+# Windows-specific files
+Thumbs.db
+Desktop.ini
+
+# macOS-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux-specific files
+directory.*
+
+# Godot's project settings file
+.project_metadata
+
+# Custom configuration files (optional)
+# Uncomment the following lines if you want to ignore specific custom configuration files
+# custom_config.cfg
+
+# Addons
+addons/
+
+# Backup files
+*.bak
+*.tmp
+
+# Swap files
+*.swp
+
+# Godot 4 specific file
+data/
+
+# To ignore the project.godot file specifically to avoid conflicts
+project.godot
