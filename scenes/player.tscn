@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://r2cs26mtvrpw"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6um5e"]
+[ext_resource type="Texture2D" uid="uid://bqfefp04ppudq" path="res://FPS-controller-assets-main/assets/crosshair.png" id="2_koplm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xkkeo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cy5os"]
+height = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_44w8i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j41r0"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_6um5e")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xkkeo")
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_cy5os")
+
+[node name="floor_sensor" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -0.4, 0)
+
+[node name="ceiling_sensor" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1.9, 0)
+
+[node name="wall_run_sensor" type="ShapeCast3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_44w8i")
+target_position = Vector3(0, 0, 0)
+
+[node name="wallrunsensor2" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+target_position = Vector3(5, 5, 5)
+
+[node name="direction thing" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="dirf" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="dird" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="dirb" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="dirr" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="diru" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="dirl" type="Node3D" parent="direction thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="sprinting" type="Node3D" parent="direction thing"]
+
+[node name="jumping" type="Node3D" parent="direction thing"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("SphereShape3D_j41r0")
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="head" type="Node3D" parent="neck"]
+
+[node name="Camera3D" type="Camera3D" parent="neck/head"]
+
+[node name="TextureRect" type="TextureRect" parent="neck/head/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_koplm")
+
+[node name="eyescast" type="RayCast3D" parent="neck/head/Camera3D"]
+target_position = Vector3(0, 0, -9999)
+
+[node name="barrelcast" type="RayCast3D" parent="neck/head/Camera3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 1, 0.4, -0.6, -1)
+target_position = Vector3(0, -1, -9999)
+
+[node name="weapon_of_mass_destruction" type="CSGBox3D" parent="neck/head/Camera3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 1, 0.4, -0.6, -1)
+
+[node name="compass" type="CSGBox3D" parent="neck/head/Camera3D"]
+transform = Transform3D(0.1, 1.26218e-30, -2.22045e-15, 0, 0.1, 1.77636e-15, 4.44089e-16, 0, 0.5, -0.4, -0.6, -2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="neck/head/Camera3D/compass"]
+transform = Transform3D(1, 2.25695e-36, 0, -4.5139e-36, 1, 0, -6.67038e-21, -1.34525e-43, 1, 0, 0, -2)
+size = Vector3(1, 1, 1.62939)
+
+[node name="body" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqq8quxpdacht"]
+
+[ext_resource type="Texture2D" uid="uid://b13l34amtv230" path="res://FPS-controller-assets-main/assets/textures/dev/grids/Dark/texture_07.png" id="1_y2nuj"]
+[ext_resource type="Texture2D" uid="uid://cu3snucfhyy6e" path="res://FPS-controller-assets-main/assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_trvdo"]
+[ext_resource type="PackedScene" uid="uid://r2cs26mtvrpw" path="res://scenes/player.tscn" id="3_qrblj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qwrh"]
+albedo_texture = ExtResource("1_y2nuj")
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lhswl"]
+panorama = ExtResource("2_trvdo")
+
+[sub_resource type="Sky" id="Sky_c5fpk"]
+sky_material = SubResource("PanoramaSkyMaterial_lhswl")
+
+[sub_resource type="Environment" id="Environment_gl7do"]
+background_mode = 2
+sky = SubResource("Sky_c5fpk")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1kos"]
+albedo_color = Color(0.898039, 0.517647, 0.607843, 1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pfgtk"]
+albedo_color = Color(0.588235, 0.478431, 0.298039, 0.333333)
+
+[node name="world" type="Node3D"]
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.5)
+use_collision = true
+size = Vector3(20, 1, 21)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, -6)
+use_collision = true
+size = Vector3(20, 1, 48)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 4.56781)
+use_collision = true
+size = Vector3(20, 1, 30)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -7.5)
+use_collision = true
+size = Vector3(5, 2, 5)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, -20)
+use_collision = true
+size = Vector3(40, 4, 20)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, 11.0881)
+use_collision = true
+size = Vector3(40, 20, 1)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.135, -0.5, -6.25003)
+use_collision = true
+size = Vector3(8.3175, 20, 35.6763)
+material = SubResource("StandardMaterial3D_6qwrh")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1533, 0, -24.1029)
+use_collision = true
+radius = 4.13011
+height = 18.9604
+sides = 20
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_gl7do")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("3_qrblj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00560665, 0.00809455, 0.00434208)
+
+[node name="splode2" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841721, -0.150421, -0.0977287)
+material = SubResource("StandardMaterial3D_l1kos")
+
+[node name="splode" type="CSGSphere3D" parent="."]
+material = SubResource("ORMMaterial3D_pfgtk")
