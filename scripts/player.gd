@@ -94,6 +94,8 @@ func _input(event):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() or Input.is_action_just_pressed("ui_accept") and extra_jumps >= 1 or wall_running and Input.is_action_just_pressed("ui_accept"):
 		jump_this_tick = true
+	if Input.is_action_pressed("closegame"):
+		get_tree().quit()
 
 func _physics_process(delta):
 
