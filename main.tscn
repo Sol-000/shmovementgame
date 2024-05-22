@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqq8quxpdacht"]
+[gd_scene load_steps=11 format=3 uid="uid://dqq8quxpdacht"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_o14ns"]
 [ext_resource type="Texture2D" uid="uid://b13l34amtv230" path="res://FPS-controller-assets-main/assets/textures/dev/grids/Dark/texture_07.png" id="1_y2nuj"]
 [ext_resource type="Texture2D" uid="uid://cu3snucfhyy6e" path="res://FPS-controller-assets-main/assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_trvdo"]
 [ext_resource type="PackedScene" uid="uid://r2cs26mtvrpw" path="res://scenes/player.tscn" id="3_qrblj"]
@@ -27,6 +28,7 @@ albedo_color = Color(0.898039, 0.517647, 0.607843, 1)
 albedo_color = Color(0.588235, 0.478431, 0.298039, 0.333333)
 
 [node name="world" type="Node3D"]
+script = ExtResource("1_o14ns")
 
 [node name="stage" type="Node3D" parent="."]
 
