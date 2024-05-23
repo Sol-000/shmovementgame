@@ -5,7 +5,7 @@ var server = null
 func _ready():
 	server = ENetMultiplayerPeer.new()
 	server.create_server(12345)
-	get_tree().set_network_peer(server)
+	get_tree().network_peer(server)
 	server.connect("peer_connected", self, "_on_peer_connected")
 	server.connect("peer_disconnected", self, "_on_peer_disconnected")
 	print("Server started on port 12345")
